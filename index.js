@@ -65,6 +65,9 @@ run().catch(console.dir);
 app.get('/',(req,res)=>{
     res.send("assignment-11");
 })
+app.get('/hi',(req,res)=>{
+    res.send("assignment");
+})
 //app listen
 app.listen(port,()=>{
     console.log("working " ,port)
