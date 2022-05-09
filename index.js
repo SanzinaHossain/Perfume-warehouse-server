@@ -29,6 +29,33 @@ async function run(){
             const item=await serviceCollection.findOne(query);
             res.send(item);
         })
+         //for update 
+    //      app.put('/items/:id',async(req,res)=>{
+    //       const id = req.params.id;
+    //           const updatedUser = req.body;
+    //           const filter = {_id: ObjectId(id)};
+    //           const options = { upsert: true };
+    //           const updatedDoc = {
+    //               $set: {
+    //                 _id: updatedUser._id,
+    //                  img: updatedUser.img,
+    //                  price:updatedUser.price,
+    //                  name:updatedUser.name,
+    //                  quantity:updatedUser.value,
+    //                   supplier:updatedUser.supplier,
+    //                   description:updatedUser.description
+    //               }
+    //           };
+    //           const result = await serviceCollection.updateOne(filter, updatedDoc, options);
+    //           res.send(result);
+    //   })
+    //item delete
+    app.delete('/items/:id', async(req,res)=>{
+        const id = req.params.id;
+        const query={_id:ObjectId(id)};
+        const result=await serviceCollection.deleteOne(query);
+        res.send(result)
+    })
     } 
     finally{
 
