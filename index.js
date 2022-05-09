@@ -29,31 +29,30 @@ async function run(){
             const item=await serviceCollection.findOne(query);
             res.send(item);
         })
-         //for update 
-    //      app.put('/items/:id',async(req,res)=>{
-    //       const id = req.params.id;
-    //           const updatedUser = req.body;
-    //           const filter = {_id: ObjectId(id)};
-    //           const options = { upsert: true };
-    //           const updatedDoc = {
-    //               $set: {
-    //                 _id: updatedUser._id,
-    //                  img: updatedUser.img,
-    //                  price:updatedUser.price,
-    //                  name:updatedUser.name,
-    //                  quantity:updatedUser.value,
-    //                   supplier:updatedUser.supplier,
-    //                   description:updatedUser.description
-    //               }
-    //           };
-    //           const result = await serviceCollection.updateOne(filter, updatedDoc, options);
-    //           res.send(result);
-    //   })
+         //for decrease quantity
+         app.put('/items/:id',async(req,res)=>{
+              const id = req.params.id;
+              const qtn = parseInt(req.body.quantity);
+              const query = {_id: ObjectId(id)};
+              const item=await serviceCollection.findOne(query);
+              if(item){
+                  const data=qtn;
+              
+              const result= await serviceCollection.updateOne(query,{$set:{quantity:data}});
+              res.send(result);
+              }
+      });
     //item delete
     app.delete('/items/:id', async(req,res)=>{
         const id = req.params.id;
         const query={_id:ObjectId(id)};
         const result=await serviceCollection.deleteOne(query);
+        res.send(result)
+    })
+    //add item
+    app.post('/items',async(req,res)=>{
+        const newservice=req.body;
+        const result=await serviceCollection.insertOne(newservice)
         res.send(result)
     })
     } 
