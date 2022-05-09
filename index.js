@@ -50,11 +50,11 @@ async function run(){
         res.send(result)
     })
     // //add item
-    // app.post('/items',async(req,res)=>{
-    //     const newservice=req.body;
-    //     const result=await serviceCollection.insertOne(newservice)
-    //     res.send(result)
-    // })
+    app.post('/items',async(req,res)=>{
+        const newservice=req.body;
+        const result=await serviceCollection.insertOne(newservice)
+        res.send(result)
+    })
     } 
     finally{
 
