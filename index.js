@@ -49,12 +49,12 @@ async function run(){
         const result=await serviceCollection.deleteOne(query);
         res.send(result)
     })
-    //add item
-    app.post('/items',async(req,res)=>{
-        const newservice=req.body;
-        const result=await serviceCollection.insertOne(newservice)
-        res.send(result)
-    })
+    // //add item
+    // app.post('/items',async(req,res)=>{
+    //     const newservice=req.body;
+    //     const result=await serviceCollection.insertOne(newservice)
+    //     res.send(result)
+    // })
     } 
     finally{
 
