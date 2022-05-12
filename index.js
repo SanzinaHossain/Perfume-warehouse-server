@@ -2,10 +2,11 @@ const express=require('express');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors=require('cors');
 const jwt = require('jsonwebtoken');
+const { restart } = require('nodemon');
 require('dotenv').config();
 const port=process.env.PORT || 5000;
 const app=express();
-//password wbVLAYVSDlQzI3dT;
+//password;
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -24,6 +25,8 @@ async function run(){
         })
         //collect all data
         app.get('/items',async(req,res)=>{
+            // const authHeader=req.headers.authorization;
+            // console.log(authHeader);
             const query={};
             const cursor=serviceCollection.find(query);
             const item=await cursor.toArray();
